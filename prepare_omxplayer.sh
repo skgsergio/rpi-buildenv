@@ -89,7 +89,7 @@ PATH := \$(PREFIX)/bin:\$(TOOLCHAIN)/bin:\$(PATH)
 
 CFLAGS += -pipe -mfloat-abi=\$(FLOAT) -mcpu=arm1176jzf-s -fomit-frame-pointer -mabi=aapcs-linux -mtune=arm1176jzf-s -mfpu=vfp -Wno-psabi -mno-apcs-stack-check -O3 -mstructure-size-boundary=32 -mno-sched-prolog
 LDFLAGS += -L\$(SYSROOT)/lib -L\$(SYSROOT)/usr/lib -L\$(SYSROOT)/opt/vc/lib/
-INCLUDES += -isystem\$(SYSROOT)/usr/include -isystem\$(SYSROOT)/opt/vc/include -isystem\$(SYSROOT)/usr/include -isystem\$(SYSROOT)/opt/vc/include/interface/vcos/pthreads -isystem\$(SYSROOT)/usr/include/freetype2
+INCLUDES += -isystem\$(SYSROOT)/usr/include -isystem\$(SYSROOT)/opt/vc/include -isystem\$(SYSROOT)/usr/include -isystem\$(SYSROOT)/opt/vc/include/interface/vcos/pthreads -isystem\$(SYSROOT)/opt/vc/include/interface/vmcs_host/linux -isystem\$(SYSROOT)/usr/include/freetype2
 EOF
 
 print_msg "Finished!"
