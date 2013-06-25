@@ -19,13 +19,14 @@ print_msg() {
 }
 
 run_chroot() {
-    mount -t proc proc $rootfs_dir/proc
-    mount -t sysfs sysfs $rootfs_dir/sys
-    mount -o bind /dev $rootfs_dir/dev
-    LC_ALL=C chroot $rootfs_dir $@
-    umount $rootfs_dir/dev
-    umount $rootfs_dir/sys
-    umount $rootfs_dir/proc
+    $cmd_sudo mount -t proc proc $rootfs_dir/proc
+    $cmd_sudo mount -t sysfs sysfs $rootfs_dir/sys
+    $cmd_sudo mount -o bind /dev $rootfs_dir/dev
+    LC_ALL=C $cmd_sudo chroot $rootfs_dir $@
+    sleep 1s
+    $cmd_sudo umount $rootfs_dir/dev
+    $cmd_sudo umount $rootfs_dir/sys
+    $cmd_sudo umount $rootfs_dir/proc
 }
 
 ## BEGIN SCRIPT

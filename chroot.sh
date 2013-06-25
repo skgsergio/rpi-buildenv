@@ -7,13 +7,31 @@
 #     https://github.com/skgsergio/rpi-buildenv
 #
 
+# Check for root
+if [[ $(whoami) == "root" ]]; then
+    export cmd_sudo=""
+else
+    print_msg "This script needs to be run as root. It will automatically use 'sudo' so you will be asked for your password."
+    print_msg "If you prefer you can directly run this script as root."
 
-mount -t proc proc $rootfs/proc
-mount -t sysfs sysfs $rootfs/sys
-mount -o bind /dev $rootfs/dev
+    echo
+    read -sn 1 -p "Press any key to continue or Ctrl-C to quit."
+    echo
 
-LC_ALL=C chroot $rootfs /bin/bash
+    export cmd_sudo=$(which sudo)
+    if [[ $? != 0 ]]; then
+        raise_error "You don't have sudo installed. Please install sudo or run this script as root."
+    fi
 
-umount $rootfs/dev
-umount $rootfs/sys
-umount $rootfs/proc
+    echo
+fi
+
+$cmd_sudo mount -t proc proc $rootfs/proc
+$cmd_sudo mount -t sysfs sysfs $rootfs/sys
+$cmd_sudo mount -o bind /dev $rootfs/dev
+
+LC_ALL=C $cmd_sudo chroot $rootfs /bin/bash
+
+$cmd_sudo umount $rootfs/dev
+$cmd_sudo umount $rootfs/sys
+$cmd_sudo umount $rootfs/proc
