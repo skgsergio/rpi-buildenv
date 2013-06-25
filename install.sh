@@ -93,7 +93,7 @@ echo "rc.d operations disabled for chroot"
 exit 101
 EOF
 
-chmod 0755 $rootfs_dir/usr/sbin/policy-rc.d
+$cmd_sudo chmod 0755 $rootfs_dir/usr/sbin/policy-rc.d
 
 print_msg "Importing Raspbian's GPG key...\n"
 
