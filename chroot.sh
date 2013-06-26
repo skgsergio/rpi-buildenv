@@ -7,6 +7,10 @@
 #     https://github.com/skgsergio/rpi-buildenv
 #
 
+print_msg() {
+    echo -e "\n[***] $@" 1>&2
+}
+
 # Check for root
 if [[ $(whoami) == "root" ]]; then
     export cmd_sudo=""
