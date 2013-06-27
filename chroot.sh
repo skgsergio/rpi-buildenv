@@ -30,12 +30,14 @@ else
     echo
 fi
 
-$cmd_sudo mount -t proc proc $rootfs/proc
-$cmd_sudo mount -t sysfs sysfs $rootfs/sys
-$cmd_sudo mount -o bind /dev $rootfs/dev
+export rootfs_dir="rootfs"
 
-LC_ALL=C $cmd_sudo chroot $rootfs /bin/bash
+$cmd_sudo mount -t proc proc $rootfs_dir/proc
+$cmd_sudo mount -t sysfs sysfs $rootfs_dir/sys
+$cmd_sudo mount -o bind /dev $rootfs_dir/dev
 
-$cmd_sudo umount $rootfs/dev
-$cmd_sudo umount $rootfs/sys
-$cmd_sudo umount $rootfs/proc
+LC_ALL=C $cmd_sudo chroot $rootfs_dir /bin/bash
+
+$cmd_sudo umount $rootfs_dir/dev
+$cmd_sudo umount $rootfs_dir/sys
+$cmd_sudo umount $rootfs_dir/proc
