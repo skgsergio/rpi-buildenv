@@ -60,7 +60,7 @@ run_chroot apt-get update
 
 print_msg "Installing libpcre3-dev, libfreetype6-dev and libboost-all-dev...\n"
 
-run_chroot apt-get -y install libpcre3-dev libfreetype6-dev libboost-all-dev
+run_chroot apt-get -y install libpcre3-dev libfreetype6-dev libboost-all-dev libglew-dev
 
 print_msg "Generating Makefile.include...\n"
 
@@ -69,6 +69,7 @@ FLOAT = hard
 
 HOST := arm-linux-gnueabihf
 SYSROOT := $(pwd)/rootfs
+SDKSTAGE := \$(SYSROOT)
 TOOLCHAIN := $(pwd)/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian/
 
 CFLAGS := -isystem\$(PREFIX)/include
