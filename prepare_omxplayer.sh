@@ -58,9 +58,9 @@ print_msg "Updating apt cache...\n"
 
 run_chroot apt-get update
 
-print_msg "Installing libpcre3-dev, libfreetype6-dev and libboost-all-dev...\n"
+print_msg "Installing libpcre3-dev, libfreetype6-dev, libboost-all-dev, libglew-dev and libdbus-1-dev...\n"
 
-run_chroot apt-get -y install libpcre3-dev libfreetype6-dev libboost-all-dev libglew-dev
+run_chroot apt-get -y install libpcre3-dev libfreetype6-dev libboost-all-dev libglew-dev libdbus-1-dev
 
 print_msg "Generating Makefile.include...\n"
 
@@ -91,7 +91,7 @@ PATH := \$(PREFIX)/bin:\$(TOOLCHAIN)/bin:\$(PATH)
 
 CFLAGS += -pipe -mfloat-abi=\$(FLOAT) -mcpu=arm1176jzf-s -fomit-frame-pointer -mabi=aapcs-linux -mtune=arm1176jzf-s -mfpu=vfp -Wno-psabi -mno-apcs-stack-check -O3 -mstructure-size-boundary=32 -mno-sched-prolog
 LDFLAGS += -L\$(SYSROOT)/lib -L\$(SYSROOT)/usr/lib -L\$(SYSROOT)/opt/vc/lib/
-INCLUDES += -isystem\$(SYSROOT)/usr/include -isystem\$(SYSROOT)/opt/vc/include -isystem\$(SYSROOT)/usr/include -isystem\$(SYSROOT)/opt/vc/include/interface/vcos/pthreads -isystem\$(SYSROOT)/opt/vc/include/interface/vmcs_host/linux -isystem\$(SYSROOT)/usr/include/freetype2
+INCLUDES += -isystem\$(SYSROOT)/usr/include -isystem\$(SYSROOT)/opt/vc/include -isystem\$(SYSROOT)/usr/include -isystem\$(SYSROOT)/opt/vc/include/interface/vcos/pthreads -isystem\$(SYSROOT)/opt/vc/include/interface/vmcs_host/linux -isystem\$(SYSROOT)/usr/include/freetype2 -isystem\$(SYSROOT)/usr/include/dbus-1.0 -isystem\$(SYSROOT)/usr/lib/arm-linux-gnueabihf/dbus-1.0/include
 EOF
 
 print_msg "Finished!"
