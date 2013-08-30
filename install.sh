@@ -7,19 +7,10 @@
 #     https://github.com/skgsergio/rpi-buildenv
 #
 
+. aux.inc.sh
+
 RASPBIAN_MIRROR="http://archive.raspbian.org/raspbian/"
 #RASPBIAN_MIRROR="http://raspbian.sconde.net/raspbian/"
-
-## Auxiliar functions
-
-raise_error() {
-    echo -e "\n[!!!] $@" 1>&2
-    exit 1
-}
-
-print_msg() {
-    echo -e "\n[***] $@" 1>&2
-}
 
 chk_dep() {
     if [[ $($cmd_sudo which $1) == "" ]]; then
@@ -34,42 +25,6 @@ chk_dep() {
         echo "[ OK] $1 found."
     fi
 }
-
-run_chroot() {
-    $cmd_sudo mount -t proc proc $rootfs_dir/proc
-    $cmd_sudo mount -t sysfs sysfs $rootfs_dir/sys
-    $cmd_sudo mount -o bind /dev $rootfs_dir/dev
-    LC_ALL=C $cmd_sudo chroot $rootfs_dir $@
-    sleep 1s
-    $cmd_sudo umount $rootfs_dir/dev
-    $cmd_sudo umount $rootfs_dir/sys
-    $cmd_sudo umount $rootfs_dir/proc
-}
-
-## BEGIN SCRIPT
-
-# Check for root
-
-if [[ $(whoami) == "root" ]]; then
-    export cmd_sudo=""
-else
-    print_msg "This script needs to be run as root. It will automatically use 'sudo' so you will be asked for your password."
-    print_msg "If you prefer you can directly run this script as root."
-
-    echo
-    read -sn 1 -p "Press any key to continue or Ctrl-C to quit."
-    echo
-
-    export cmd_sudo=$(which sudo)
-    if [[ $? != 0 ]]; then
-        raise_error "You don't have sudo installed. Please install sudo or run this script as root."
-    fi
-
-    echo
-fi
-
-# Start doing things. From here less comments, I think that the print_msg are enough.
-export rootfs_dir="rootfs"
 
 print_msg "Checking for dependencies...\n"
 
