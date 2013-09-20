@@ -23,7 +23,7 @@ cat <<EOF > Makefile.include
 FLOAT = hard
 
 HOST := arm-linux-gnueabihf
-SYSROOT := $(pwd)/rootfs
+SYSROOT := $(pwd)/$rootfs_dir
 SDKSTAGE := \$(SYSROOT)
 TOOLCHAIN := $(pwd)/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian/
 
