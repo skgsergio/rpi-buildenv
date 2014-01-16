@@ -14,7 +14,7 @@ cd omxplayer
 make ffmpeg
 make
 make dist
-FORK=`git remote -v | cut -f2 -d':' | cut -f1 -d'/' | head -1`
+FORK=`git remote -v | sed -e 's/.*github\.com\/\([^/]*\).*/\1/'`
 VERSION=0.3.4~git~$FORK~`date +%Y%m%d`~`git describe --always --tag`
 
 cd ..
