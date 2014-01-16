@@ -36,7 +36,7 @@ TL;DR for building omxplayer
 
     sudo apt-get install debootstrap qemu-user-static
     ./install.sh
-    ./prepare_raspbian.sh
+    ./prepare_omxplayer.sh
     cp Makefile.include /path/to/omxplayer-source/.
     cd /path/to/omxplayer-source/
     make ffmpeg
