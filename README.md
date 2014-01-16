@@ -53,7 +53,7 @@ TL;DR for building omxplayer
     ./install.sh
     ./prepare_omxplayer.sh
     ./build_omxplayer.sh https://github.com/popcornmix/omxplayer.git
-    dpkg -c package/omxplayer*.deb
+    dpkg -c package/*.deb
 
 License
 -------

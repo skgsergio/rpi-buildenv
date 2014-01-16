@@ -24,4 +24,5 @@ cp debian/{postrm,preinst,prerm} package/omxplayer/DEBIAN/
 sed -e "s/##VERSION##/$VERSION/" debian/control.tmpl > package/omxplayer/DEBIAN/control
 cp -aR omxplayer/omxplayer-dist/* package/omxplayer/
 dpkg-deb --build package/omxplayer .
+mv omxplayer.deb package/
 
