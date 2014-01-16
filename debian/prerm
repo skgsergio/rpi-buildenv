@@ -1,0 +1,13 @@
+#!/bin/sh
+OMXPLAYER_LIBS="/usr/lib/omxplayer"
+OMXPLAYER_DOCS="/usr/share/doc/omxplayer"
+
+if [ "$1" = "upgrade" ]; then
+    if [ -e "$OMXPLAYER_LIBS" ]; then
+	rm -rf $OMXPLAYER_LIBS
+    fi
+    
+    if [ -e "$OMXPLAYER_DOCS" ]; then
+	rm -rf $OMXPLAYER_DOCS
+    fi
+fi
