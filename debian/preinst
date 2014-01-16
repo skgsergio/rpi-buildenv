@@ -1,0 +1,18 @@
+#!/bin/sh
+OMXPLAYER_LIBS="/usr/lib/omxplayer"
+OMXPLAYER_DOCS="/usr/share/doc/omxplayer"
+
+if [ "$1" = "install" ] || [ "$1" = "upgrade" ]; then
+    if [ -e "$OMXPLAYER_LIBS" ]; then
+	rm -rf $OMXPLAYER_LIBS
+    fi
+    
+    if [ -e "$OMXPLAYER_DOCS" ]; then
+	rm -rf $OMXPLAYER_DOCS
+    fi
+    
+    if [ -e "/var/lib/dpkg/info/omxplayer.postrm" ]; then
+	echo "#!/bin/sh" > /var/lib/dpkg/info/omxplayer.postrm
+	echo "exit 0" >> /var/lib/dpkg/info/omxplayer.postrm
+    fi
+fi
