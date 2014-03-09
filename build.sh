@@ -11,7 +11,10 @@
 
 run_chroot /root/omxplayer-build/build.sh
 
-cp $rootfs_dir/root/omxplayer-build/*.deb .
-rm $rootfs_dir/root/omxplayer-build/*.deb
-
-ls -l *.deb
+if [[ $? != 0 ]]; then
+    cp $rootfs_dir/root/omxplayer-build/*.deb .
+    rm $rootfs_dir/root/omxplayer-build/*.deb
+    ls -l *.deb
+else
+    exit 1
+fi
