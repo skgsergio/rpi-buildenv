@@ -1,0 +1,14 @@
+FLOAT=hard
+
+LD       := ld
+CC       := gcc-4.7
+CXX      := g++-4.7
+CXXCP    := $(CXX) -E
+OBJDUMP  := objdump
+RANLIB   := ranlib
+STRIP    := strip
+AR       := ar
+
+CFLAGS   += -O3 -mfloat-abi=$(FLOAT) -mcpu=arm1176jzf-s -mtune=arm1176jzf-s -march=armv6zk -fomit-frame-pointer -mabi=aapcs-linux -mfpu=vfp -Wno-psabi -mno-apcs-stack-check -mstructure-size-boundary=32 -mno-sched-prolog
+LDFLAGS  += -L/opt/vc/lib
+INCLUDES += -I/opt/vc/include -I/opt/vc/include/interface/vcos/pthreads -I/opt/vc/include/interface/vmcs_host -I/opt/vc/include/interface/vmcs_host/linux
