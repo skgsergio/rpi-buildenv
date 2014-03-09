@@ -33,7 +33,7 @@ TL;DR for building omxplayer
 ----------------------------
 
 I'm going to asume you are using Debian, Ubuntu or derivated since you need
-debootstrap.
+`debootstrap`.
 
     sudo apt-get install debootstrap qemu-user-static
     git clone https://github.com/skgsergio/rpi-buildenv.git
