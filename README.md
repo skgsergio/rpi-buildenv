@@ -32,10 +32,18 @@ When you are inside the Raspbian system you can use `apt-get` to install package
 TL;DR for building omxplayer
 ----------------------------
 
+I'm going to asume you are using Debian, Ubuntu or derivated since you need
+debootstrap.
+
     sudo apt-get install debootstrap qemu-user-static
+    git clone https://github.com/skgsergio/rpi-buildenv.git
+    cd rpi-buildenv
     ./install.sh
     ./prepare_omxplayer.sh
     ./build.sh
+
+If nothing went wrong you now have a deb package in the current directory
+ready to use.
 
 License
 -------
