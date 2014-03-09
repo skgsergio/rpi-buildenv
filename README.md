@@ -20,9 +20,7 @@ With 50MB down bandwidth it took me about 15 minutes.
 Usage for omxplayer
 -------------------
 
-Do the previous and `./prepare_omxplayer.sh`. It will install the dependencies on the rootfs and generate a Makefile.include.
-
-You should replace omxplayer's Makefile.include with this new Makefile.include.
+Do the previous and `./prepare_omxplayer.sh`. It will install the dependencies on the rootfs.
 
 Useful things to know
 ---------------------
@@ -36,12 +34,8 @@ TL;DR for building omxplayer
 
     sudo apt-get install debootstrap qemu-user-static
     ./install.sh
-    ./prepare_raspbian.sh
-    cp Makefile.include /path/to/omxplayer-source/.
-    cd /path/to/omxplayer-source/
-    make ffmpeg
-    make
-    make dist
+    ./prepare_omxplayer.sh
+    ./build.sh
 
 License
 -------
