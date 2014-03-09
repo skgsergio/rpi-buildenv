@@ -13,6 +13,10 @@ print_msg "Updating apt cache...\n"
 
 run_chroot apt-get update
 
+print_msg "Installing build tools...\n"
+
+run_chroot apt-get -y install build-essential gcc-4.7 g++-4.7 pkg-config
+
 print_msg "Installing libpcre3-dev, libfreetype6-dev, libboost-all-dev, libglew-dev, libdbus-1-dev and libssl-dev...\n"
 
 run_chroot apt-get -y install libpcre3-dev libfreetype6-dev libboost-all-dev libglew-dev libdbus-1-dev libssl-dev

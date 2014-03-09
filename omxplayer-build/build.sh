@@ -54,7 +54,7 @@ fi
 # Patch Makefiles
 print_status "Patching Makefiles..."
 
-sed -i 's/INCLUDES+=/INCLUDES+=\$(pkg-config --cflags dbus-1 freetype2) /g' Makefile
+sed -i 's/INCLUDES+=/INCLUDES+=\$(shell pkg-config --cflags dbus-1 freetype2) /g' Makefile
 sed -i 's/\$(CXX) \$(LDFLAGS)/\$(CXX) \$(CFLAGS) \$(INCLUDES) \$(LDFLAGS)/g' Makefile
 sed -i 's/\/usr\/share\/doc/\/usr\/share\/doc\/omxplayer/g' Makefile
 sed -i '/cd \$(DIST); tar -czf ..\/\$(DIST).tgz \*/d' Makefile
