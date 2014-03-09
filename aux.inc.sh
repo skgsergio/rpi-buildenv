@@ -23,8 +23,10 @@ run_chroot() {
     $cmd_sudo mount -t proc proc $rootfs_dir/proc
     $cmd_sudo mount -t sysfs sysfs $rootfs_dir/sys
     $cmd_sudo mount -o bind /dev $rootfs_dir/dev
+    $cmd_sudo mount -o bind /dev/pts $rootfs_dir/dev/pts
     LC_ALL=C $cmd_sudo chroot $rootfs_dir $@
     sleep 1s
+    $cmd_sudo umount $rootfs_dir/dev/pts
     $cmd_sudo umount $rootfs_dir/dev
     $cmd_sudo umount $rootfs_dir/sys
     $cmd_sudo umount $rootfs_dir/proc
