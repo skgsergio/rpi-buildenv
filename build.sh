@@ -9,7 +9,7 @@
 
 . aux.inc.sh
 
-run_chroot /root/omxplayer-build/build.sh
+run_chroot /root/omxplayer-build/build.sh $1
 
 if [[ $? == 0 ]]; then
     cp $rootfs_dir/root/omxplayer-build/*.deb .

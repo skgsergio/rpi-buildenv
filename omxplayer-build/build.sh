@@ -6,7 +6,7 @@
 # Sergio Conde <sergio@sconde.net>
 #
 
-DEB_VERSION="UNOFFICIAL~git$(date +%Y%m%d)"
+DEB_VERSION="0.0.0~git$(date +%Y%m%d)"
 
 SRC_REPO="https://github.com/popcornmix/omxplayer.git"
 SRC_DIR="omxplayer-src"
