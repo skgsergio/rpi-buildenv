@@ -38,7 +38,7 @@ git submodule update --init
 
 print_msg "Downloading Raspbian rootfs...\n"
 
-$cmd_sudo qemu-debootstrap --no-check-gpg --include=ca-certificates,git-core,binutils --arch armhf wheezy $rootfs_dir $RASPBIAN_MIRROR
+$cmd_sudo qemu-debootstrap --no-check-gpg --include=ca-certificates,git-core,binutils,curl --arch armhf wheezy $rootfs_dir $RASPBIAN_MIRROR
 
 print_msg "Configuring rootfs...\n"
 
@@ -54,7 +54,7 @@ print_msg "Importing Raspbian's GPG key...\n"
 
 echo "deb $RASPBIAN_MIRROR wheezy main contrib non-free" | $cmd_sudo tee -a $rootfs_dir/etc/apt/sources.list > /dev/null
 
-$cmd_sudo wget http://raspbian.sconde.net/raspbian.public.key -O $rootfs_dir/root/raspbian.key
+$cmd_sudo wget $RASPBIAN_MIRROR/raspbian.public.key -O $rootfs_dir/root/raspbian.key
 
 run_chroot apt-key add /root/raspbian.key
 run_chroot apt-get update
