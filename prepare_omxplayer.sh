@@ -21,6 +21,11 @@ print_msg "Installing libpcre3-dev, libfreetype6-dev, libboost-all-dev, libglew-
 
 run_chroot apt-get -y install libpcre3-dev libfreetype6-dev libboost-all-dev libglew-dev libdbus-1-dev libssl-dev
 
+print_msg "Making GCC/G++ 4.7 default."
+
+run_chroot update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.7 60 --slave /usr/bin/g++ g++ /usr/bin/g++-4.7
+run_chroot update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.6 40 --slave /usr/bin/g++ g++ /usr/bin/g++-4.6
+
 print_msg "Copying build files...\n"
 
 $cmd_sudo cp -r omxplayer-build $rootfs_dir/root/omxplayer-build
