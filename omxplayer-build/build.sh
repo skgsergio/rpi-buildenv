@@ -22,6 +22,10 @@ print_status() {
     echo -e "\n[***] $@\n" 1>&2
 }
 
+if [ -d /usr/lib/ccache ]; then
+    export PATH=/usr/lib/ccache:$PATH
+fi
+
 cd $WORK_DIR
 
 # Downloading source
