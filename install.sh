@@ -11,6 +11,7 @@
 
 RASPBIAN_MIRROR="http://archive.raspbian.org/raspbian/"
 #RASPBIAN_MIRROR="http://raspbian.sconde.net/raspbian/"
+RASPBIAN_VERSION="wheezy"  # jessie
 
 chk_dep() {
     if [[ $($cmd_sudo which $1) == "" ]]; then
@@ -32,13 +33,9 @@ chk_dep debootstrap debootstrap
 chk_dep qemu-debootstrap qemu-user-static
 chk_dep chroot coreutils
 
-print_msg "Downloading RaspberryPi tools...\n"
-
-git submodule update --init
-
 print_msg "Downloading Raspbian rootfs...\n"
 
-$cmd_sudo qemu-debootstrap --no-check-gpg --include=ca-certificates,git-core,binutils,curl --arch armhf wheezy $rootfs_dir $RASPBIAN_MIRROR
+$cmd_sudo qemu-debootstrap --no-check-gpg --include=ca-certificates,git-core,binutils,curl --arch armhf $RASPBIAN_VERSION $rootfs_dir $RASPBIAN_MIRROR
 
 print_msg "Configuring rootfs...\n"
 
@@ -52,7 +49,7 @@ $cmd_sudo chmod 0755 $rootfs_dir/usr/sbin/policy-rc.d
 
 print_msg "Importing Raspbian's GPG key...\n"
 
-echo "deb $RASPBIAN_MIRROR wheezy main contrib non-free" | $cmd_sudo tee -a $rootfs_dir/etc/apt/sources.list > /dev/null
+echo "deb $RASPBIAN_MIRROR $RASPBIAN_VERSION main contrib non-free" | $cmd_sudo tee -a $rootfs_dir/etc/apt/sources.list > /dev/null
 
 $cmd_sudo wget $RASPBIAN_MIRROR/raspbian.public.key -O $rootfs_dir/root/raspbian.key
 
