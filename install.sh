@@ -9,8 +9,8 @@
 
 . aux.inc.sh
 
-RASPBIAN_MIRROR="http://archive.raspbian.org/raspbian/"
-#RASPBIAN_MIRROR="http://raspbian.sconde.net/raspbian/"
+RASPBIAN_MIRROR="http://archive.raspbian.org"
+#RASPBIAN_MIRROR="http://raspbian.sconde.net"
 RASPBIAN_VERSION="wheezy"  # jessie
 
 chk_dep() {
@@ -35,11 +35,11 @@ chk_dep chroot coreutils
 
 print_msg "Downloading Raspbian rootfs...\n"
 
-$cmd_sudo qemu-debootstrap --no-check-gpg --include=ca-certificates,git-core,binutils,curl --arch armhf $RASPBIAN_VERSION $rootfs_dir $RASPBIAN_MIRROR
+$cmd_sudo qemu-debootstrap --no-check-gpg --include=ca-certificates,git-core,binutils,curl --arch armhf $RASPBIAN_VERSION $rootfs_dir $RASPBIAN_MIRROR/raspbian/
 
 print_msg "Configuring rootfs...\n"
 
-cat <<EOF | $cmd_sudo tee -a $rootfs_dir/usr/sbin/policy-rc.d > /dev/null
+cat <<EOF | $cmd_sudo tee $rootfs_dir/usr/sbin/policy-rc.d > /dev/null
 #!/bin/sh
 echo "rc.d operations disabled for chroot"
 exit 101
@@ -49,7 +49,7 @@ $cmd_sudo chmod 0755 $rootfs_dir/usr/sbin/policy-rc.d
 
 print_msg "Importing Raspbian's GPG key...\n"
 
-echo "deb $RASPBIAN_MIRROR $RASPBIAN_VERSION main contrib non-free" | $cmd_sudo tee -a $rootfs_dir/etc/apt/sources.list > /dev/null
+echo "deb $RASPBIAN_MIRROR/raspbian/ $RASPBIAN_VERSION main contrib non-free" | $cmd_sudo tee $rootfs_dir/etc/apt/sources.list > /dev/null
 
 $cmd_sudo wget $RASPBIAN_MIRROR/raspbian.public.key -O $rootfs_dir/root/raspbian.key
 
