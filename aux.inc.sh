@@ -25,11 +25,11 @@ run_chroot() {
     $cmd_sudo mount -o bind /dev $rootfs_dir/dev
     $cmd_sudo mount -o bind /dev/pts $rootfs_dir/dev/pts
     LC_ALL=C $cmd_sudo chroot $rootfs_dir $@
-    sleep 1s
-    $cmd_sudo umount $rootfs_dir/dev/pts
-    $cmd_sudo umount $rootfs_dir/dev
-    $cmd_sudo umount $rootfs_dir/sys
-    $cmd_sudo umount $rootfs_dir/proc
+    sleep 5s
+    $cmd_sudo umount -Rf $rootfs_dir/dev/pts
+    $cmd_sudo umount -Rf $rootfs_dir/dev
+    $cmd_sudo umount -Rf $rootfs_dir/sys
+    $cmd_sudo umount -Rf $rootfs_dir/proc
 }
 
 ## Check for root

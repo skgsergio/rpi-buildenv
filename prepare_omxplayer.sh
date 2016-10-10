@@ -19,7 +19,7 @@ run_chroot apt-get -y install build-essential gcc-4.7 g++-4.7 pkg-config ccache
 
 print_msg "Installing build deps...\n"
 
-run_chroot apt-get -y install libpcre3-dev libfreetype6-dev libboost-all-dev libglew-dev libdbus-1-dev libssl-dev libsmbclient-dev libssh-dev
+run_chroot apt-get -y install libpcre3-dev libfreetype6-dev libboost-all-dev libglew-dev libdbus-1-dev libssl-dev libsmbclient-dev libssh-dev libasound2-dev
 
 print_msg "Making GCC/G++ 4.7 default."
 

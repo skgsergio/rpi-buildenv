@@ -4,7 +4,7 @@ Section: video
 Priority: optional
 Architecture: armhf
 Essential: no
-Depends: libpcre3, libfreetype6, fonts-freefont-ttf, dbus, libssl1.0.0, libsmbclient, libssh-4
+Depends: libpcre3, libfreetype6, fonts-freefont-ttf, dbus, libssl1.0.0, libsmbclient, libssh-4, libasound2
 Suggests: fbset, x11-xserver-utils
 Installed-Size: TOTAL_SIZE
 Maintainer: Unofficial Build <null@foo.bar>
